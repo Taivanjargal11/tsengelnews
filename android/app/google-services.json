@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "837043373715",
+    "project_id": "taivanshop",
+    "storage_bucket": "taivanshop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:837043373715:android:5bf70a14a7287ba22caf66",
+        "android_client_info": {
+          "package_name": "com.example.ui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "837043373715-iuciern91gcvlcgb06iilrpqu6cgh455.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD36eD6Lo0AFvPZe1MdoKQL3Cn0YZBVnS4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "837043373715-iuciern91gcvlcgb06iilrpqu6cgh455.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
