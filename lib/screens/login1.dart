@@ -180,34 +180,7 @@ class _Login1 extends State<Login1> {
                                     ))),
                           ],
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const <Widget>[
-                            Text(
-                                "-----------------Or login with-----------------"),
-                          ],
-                        ),
-                        Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: const <Widget>[
-                              IconButton(
-                                  icon: const Icon(
-                                    Icons.mail_outline,
-                                    size: 50,
-                                  ),
-                                  tooltip: 'E-Mail',
-                                  onPressed: null),
-                              IconButton(
-                                  icon: const Icon(
-                                    Icons.facebook,
-                                    size: 50,
-                                  ),
-                                  tooltip: 'Facebook',
-                                  onPressed: null),
-                            ],
-                          ),
-                        ),
+
                       ],
                     ),
                   ),

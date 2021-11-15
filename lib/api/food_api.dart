@@ -148,16 +148,16 @@ _uploadFood(Food food, bool isUpdating, Function foodUploaded,
 }
 
 deleteFood(Food food, Function foodDeleted) async {
-  if (food.image != null) {
-    StorageReference storageReference =
-        await FirebaseStorage.instance.getReferenceFromUrl(food.image);
-
-    print(storageReference.path);
-
-    await storageReference.delete();
-
-    print('image deleted');
-  }
+  // if (food.image != null) {
+  //   StorageReference storageReference =
+  //       await FirebaseStorage.instance.getReferenceFromUrl(food.image);
+  //
+  //   print(storageReference.path);
+  //
+  //   await storageReference.delete();
+  //
+  //   print('image deleted');
+  // }
 
   await Firestore.instance.collection('Foods').document(food.id).delete();
   foodDeleted(food);

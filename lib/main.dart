@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         accentColor: Colors.lightBlue,
       ),
-      initialRoute: '/product_List',
+      initialRoute: '',
       routes: {
         '/Signup_Screen': (context) => SignUp(),
 
