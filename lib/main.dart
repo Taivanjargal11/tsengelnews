@@ -3,6 +3,7 @@ import 'package:CWCFlutter/screens/SignUp.dart';
 import 'package:CWCFlutter/screens/feed.dart';
 import 'package:CWCFlutter/screens/login.dart';
 import 'package:CWCFlutter/screens/login1.dart';
+import 'package:CWCFlutter/screens/shopping_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '',
       routes: {
         '/Signup_Screen': (context) => SignUp(),
+        '/Shopping_cart':(context)=>ShoppingCartWidget(),
 
       },
       home: Consumer<AuthNotifier>(
