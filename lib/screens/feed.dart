@@ -4,6 +4,8 @@ import 'package:CWCFlutter/notifier/food_notifier.dart';
 import 'package:CWCFlutter/screens/detail.dart';
 import 'package:CWCFlutter/screens/food_form.dart';
 import 'package:CWCFlutter/screens/shopping_cart.dart';
+import 'package:CWCFlutter/sharedPref/PreferencesService.dart';
+import 'package:CWCFlutter/sharedPref/models.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +17,13 @@ class Feed extends StatefulWidget {
 }
 
 class _FeedState extends State<Feed> {
+  final _preferencesService = PreferencesService();
+
+  final _usernameController = TextEditingController();
+  var _selectedGender = Gender.FEMALE;
+  var _selectedLanguages = Set<ProgrammingLanguage>();
+  var _isEmployed = false;
+
   @override
   void initState() {
     FoodNotifier foodNotifier =
@@ -50,14 +59,15 @@ class _FeedState extends State<Feed> {
             IconButton(
                 icon: Icon(Icons.shopping_cart),
                 onPressed: () {
-                  Navigator.pushNamed(
-                    context,
-                    '/Signup_Screen',
-                  );
+                  // Navigator.pushNamed(
+                  //   context,
+                  //   '/Signup_Screen',
+                  // );
                   showBarModalBottomSheet(
                     context: context,
                     builder: (context) => Container(
                       color: Colors.white,
+                      child: ShoppingCartWidget(),
                     ),
                   );
                 })
@@ -87,8 +97,7 @@ class _FeedState extends State<Feed> {
                   },
                 ),
                 IconButton(
-                  onPressed: () =>
-                      _chooseProduct(foodNotifier.foodList[index].name),
+                  onPressed: () => _saveFood(foodNotifier.foodList[index].name),
                   icon: const Icon(Icons.add_shopping_cart),
                 )
               ]);
@@ -121,12 +130,18 @@ class _FeedState extends State<Feed> {
         ));
   }
 
-  dynamic _chooseProduct(String name) async {
-    Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-    final SharedPreferences prefs = await _prefs;
-    prefs.setString("Cart", name);
+  void _saveFood(String name) {
+    final newSettings = Settings(
+        username: name,
+        gender: null,
+        programmingLanguages: null,
+        isEmployed: null);
+
+    print(newSettings);
+    _preferencesService.saveSettings(newSettings);
   }
 }
+
 /// Adding a list or object
 /// Use import 'dart:convert'; for jsonEncode
 // dynamic putJson(key, val) async {

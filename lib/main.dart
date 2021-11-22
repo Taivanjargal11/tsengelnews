@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '',
       routes: {
         '/Signup_Screen': (context) => SignUp(),
-        '/Shopping_cart':(context)=>ShoppingCartWidget(),
+        // '/Shopping_cart':(context)=>ShoppingCartWidget(),
 
       },
       home: Consumer<AuthNotifier>(
