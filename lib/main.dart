@@ -9,7 +9,8 @@ import 'package:provider/provider.dart';
 
 import 'notifier/auth_notifier.dart';
 
-void main() => runApp(MultiProvider(
+void main() =>
+    runApp(MultiProvider(
       providers: [
         ChangeNotifierProvider(
           create: (context) => AuthNotifier(),
@@ -22,6 +23,19 @@ void main() => runApp(MultiProvider(
     ));
 
 class MyApp extends StatelessWidget {
+
+  // @override
+  // void initState() {
+  //   FirebaseMessaging.instance.getInitialMessage();
+  //   FirebaseMessaging.onMessage.listen((message) {
+  //     if (message.notification != null){
+  //       print(message.notification!.body);
+  //       print(message.notification!.title);
+  //
+  //     }
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

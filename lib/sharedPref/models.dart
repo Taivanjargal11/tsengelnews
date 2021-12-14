@@ -4,10 +4,10 @@ enum ProgrammingLanguage { DART, JAVASCRIPT, KOTLIN, SWIFT }
 
 class Settings {
   final String username;
-  final Gender gender;
+  final String img;
   final Set<ProgrammingLanguage> programmingLanguages;
   final bool isEmployed;
 
   Settings(
-      {this.username, this.gender, this.programmingLanguages, this.isEmployed});
+      {this.username, this.img, this.programmingLanguages, this.isEmployed});
 }

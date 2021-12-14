@@ -11,13 +11,13 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart' as path;
 import 'package:uuid/uuid.dart';
 
-login(User user, AuthNotifier authNotifier) async {
-  AuthResult authResult = await FirebaseAuth.instance
+login(user, AuthNotifier authNotifier) async {
+  var authResult = await FirebaseAuth.instance
       .signInWithEmailAndPassword(email: user.email, password: user.password)
       .catchError((error) => print(error.code));
 
   if (authResult != null) {
-    FirebaseUser firebaseUser = authResult.user;
+    var firebaseUser = authResult.user;
 
 
     if (firebaseUser != null) {
@@ -28,8 +28,8 @@ login(User user, AuthNotifier authNotifier) async {
 
 }
 
-signup(User user, AuthNotifier authNotifier) async {
-  AuthResult authResult = await FirebaseAuth.instance
+signup(user, AuthNotifier authNotifier) async {
+  var authResult = await FirebaseAuth.instance
       .createUserWithEmailAndPassword(
           email: user.email, password: user.password)
       .catchError((error) => print(error.code));

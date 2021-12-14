@@ -1,6 +1,6 @@
+import 'package:CWCFlutter/model/user.dart';
 import 'package:flutter/material.dart';
 import 'package:CWCFlutter/api/food_api.dart';
-import 'package:CWCFlutter/model/user.dart';
 import 'package:CWCFlutter/notifier/auth_notifier.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -19,7 +19,7 @@ class _Login1 extends State<Login1> {
   final TextEditingController _passwordController = new TextEditingController();
   AuthMode _authMode = AuthMode.Login;
 
-  User _user = User();
+  var _user=new User();
 
   @override
   void initState() {

@@ -17,6 +17,7 @@ class Feed extends StatefulWidget {
 }
 
 class _FeedState extends State<Feed> {
+  List<Settings> data = new List();
   final _preferencesService = PreferencesService();
 
   final _usernameController = TextEditingController();
@@ -97,7 +98,8 @@ class _FeedState extends State<Feed> {
                   },
                 ),
                 IconButton(
-                  onPressed: () => _saveFood(foodNotifier.foodList[index].name),
+                  onPressed: () => _saveFood(foodNotifier.foodList[index].image,
+                      foodNotifier.foodList[index].name),
                   icon: const Icon(Icons.add_shopping_cart),
                 )
               ]);
@@ -112,7 +114,7 @@ class _FeedState extends State<Feed> {
           onRefresh: _refreshList,
         ),
         floatingActionButton: new Visibility(
-          visible: authNotifier.user.email == "admin@gmail.com",
+          visible: authNotifier.user.email == "admin@gmail.com" ? true : false,
           child: new FloatingActionButton(
             onPressed: () {
               foodNotifier.currentFood = null;
@@ -130,14 +132,16 @@ class _FeedState extends State<Feed> {
         ));
   }
 
-  void _saveFood(String name) {
+  void _saveFood(String imgUrl, String name) {
     final newSettings = Settings(
         username: name,
-        gender: null,
+        img: imgUrl,
         programmingLanguages: null,
         isEmployed: null);
+    data.add(newSettings);
 
     print(newSettings);
+    _preferencesService.saveData(data);
     _preferencesService.saveSettings(newSettings);
   }
 }

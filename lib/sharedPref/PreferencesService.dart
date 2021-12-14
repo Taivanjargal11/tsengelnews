@@ -38,4 +38,6 @@ class PreferencesService {
     // programmingLanguages: programmingLanguages,
     // isEmployed: isEmployed);
   }
+
+  void saveData(List<Settings> data) {}
 }
