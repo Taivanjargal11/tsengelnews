@@ -1,5 +1,6 @@
 import 'package:CWCFlutter/api/food_api.dart';
 import 'package:CWCFlutter/model/food.dart';
+import 'package:CWCFlutter/notifier/auth_notifier.dart';
 import 'package:CWCFlutter/notifier/food_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +10,7 @@ import 'food_form.dart';
 class FoodDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    AuthNotifier authNotifier = Provider.of<AuthNotifier>(context);
     FoodNotifier foodNotifier = Provider.of<FoodNotifier>(context);
 
     _onFoodDeleted(Food food) {
@@ -29,7 +31,10 @@ class FoodDetail extends StatelessWidget {
                   foodNotifier.currentFood.image != null
                       ? foodNotifier.currentFood.image
                       : 'https://www.testingxperts.com/wp-content/uploads/2019/02/placeholder-img.jpg',
-                  width: MediaQuery.of(context).size.width,
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width,
                   height: 250,
                   fit: BoxFit.fitWidth,
                 ),
@@ -47,7 +52,8 @@ class FoodDetail extends StatelessWidget {
                 SizedBox(height: 20),
                 Text(
                   "Ingredients",
-                  style: TextStyle(fontSize: 18, decoration: TextDecoration.underline),
+                  style: TextStyle(
+                      fontSize: 18, decoration: TextDecoration.underline),
                 ),
                 SizedBox(height: 16),
                 GridView.count(
@@ -59,16 +65,18 @@ class FoodDetail extends StatelessWidget {
                   mainAxisSpacing: 4,
                   children: foodNotifier.currentFood.subIngredients
                       .map(
-                        (ingredient) => Card(
+                        (ingredient) =>
+                        Card(
                           color: Colors.black54,
                           child: Center(
                             child: Text(
                               ingredient,
-                              style: TextStyle(color: Colors.white, fontSize: 16),
+                              style:
+                              TextStyle(color: Colors.white, fontSize: 16),
                             ),
                           ),
                         ),
-                      )
+                  )
                       .toList(),
                 )
               ],
@@ -76,7 +84,9 @@ class FoodDetail extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: Column(
+      floatingActionButton: new Visibility(
+        visible: authNotifier.user.email=="admin@gmail.com"?true:false,
+        child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton(
@@ -96,13 +106,16 @@ class FoodDetail extends StatelessWidget {
           SizedBox(height: 20),
           FloatingActionButton(
             heroTag: 'button2',
-            onPressed: () => deleteFood(foodNotifier.currentFood, _onFoodDeleted),
+            onPressed: () =>
+                deleteFood(foodNotifier.currentFood, _onFoodDeleted),
             child: Icon(Icons.delete),
             backgroundColor: Colors.red,
             foregroundColor: Colors.white,
-          ),
+          )
+
+
         ],
-      ),
+      ),)
     );
   }
 }
