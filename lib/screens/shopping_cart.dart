@@ -1,6 +1,6 @@
 import 'package:CWCFlutter/api/food_api.dart';
 import 'package:CWCFlutter/notifier/auth_notifier.dart';
-import 'package:CWCFlutter/notifier/food_notifier.dart';
+import 'package:CWCFlutter/notifier/news_notifier.dart';
 import 'package:CWCFlutter/screens/detail.dart';
 import 'package:CWCFlutter/screens/food_form.dart';
 import 'package:CWCFlutter/screens/shopping_cart.dart';

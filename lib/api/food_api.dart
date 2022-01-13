@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
-import 'package:CWCFlutter/model/food.dart';
+import 'package:CWCFlutter/model/news.dart';
 import 'package:CWCFlutter/model/user.dart';
 import 'package:CWCFlutter/notifier/auth_notifier.dart';
-import 'package:CWCFlutter/notifier/food_notifier.dart';
+import 'package:CWCFlutter/notifier/news_notifier.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -72,14 +72,14 @@ initializeCurrentUser(AuthNotifier authNotifier) async {
 
 getFoods(FoodNotifier foodNotifier) async {
   QuerySnapshot snapshot = await Firestore.instance
-      .collection('Foods')
+      .collection('News')
       .orderBy("createdAt", descending: true)
       .getDocuments();
 
-  List<Food> _foodList = [];
+  List<News> _foodList = [];
 
   snapshot.documents.forEach((document) {
-    Food food = Food.fromMap(document.data);
+    News food = News.fromMap(document.data);
     _foodList.add(food);
   });
 
@@ -87,7 +87,7 @@ getFoods(FoodNotifier foodNotifier) async {
 }
 
 uploadFoodAndImage(
-    Food food, bool isUpdating, File localFile, Function foodUploaded) async {
+    News food, bool isUpdating, File localFile, Function foodUploaded) async {
   if (localFile != null) {
     print("uploading image");
 
@@ -98,7 +98,7 @@ uploadFoodAndImage(
 
     final StorageReference firebaseStorageRef = FirebaseStorage.instance
         .ref()
-        .child('foods/images/$uuid$fileExtension');
+        .child('news/images/$uuid$fileExtension');
 
     await firebaseStorageRef
         .putFile(localFile)
@@ -117,9 +117,9 @@ uploadFoodAndImage(
   }
 }
 
-_uploadFood(Food food, bool isUpdating, Function foodUploaded,
+_uploadFood(News food, bool isUpdating, Function foodUploaded,
     {String imageUrl}) async {
-  CollectionReference foodRef = Firestore.instance.collection('Foods');
+  CollectionReference foodRef = Firestore.instance.collection('News');
 
   if (imageUrl != null) {
     food.image = imageUrl;
@@ -131,7 +131,7 @@ _uploadFood(Food food, bool isUpdating, Function foodUploaded,
     await foodRef.document(food.id).updateData(food.toMap());
 
     foodUploaded(food);
-    print('updated food with id: ${food.id}');
+    print('updated news with id: ${food.id}');
   } else {
     food.createdAt = Timestamp.now();
 
@@ -139,7 +139,7 @@ _uploadFood(Food food, bool isUpdating, Function foodUploaded,
 
     food.id = documentRef.documentID;
 
-    print('uploaded food successfully: ${food.toString()}');
+    print('uploaded news successfully: ${food.toString()}');
 
     await documentRef.setData(food.toMap(), merge: true);
 
@@ -147,7 +147,7 @@ _uploadFood(Food food, bool isUpdating, Function foodUploaded,
   }
 }
 
-deleteFood(Food food, Function foodDeleted) async {
+deleteFood(News food, Function foodDeleted) async {
   // if (food.image != null) {
   //   StorageReference storageReference =
   //       await FirebaseStorage.instance.getReferenceFromUrl(food.image);
@@ -159,6 +159,6 @@ deleteFood(Food food, Function foodDeleted) async {
   //   print('image deleted');
   // }
 
-  await Firestore.instance.collection('Foods').document(food.id).delete();
+  await Firestore.instance.collection('News').document(food.id).delete();
   foodDeleted(food);
 }

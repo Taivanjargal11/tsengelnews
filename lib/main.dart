@@ -1,4 +1,4 @@
-import 'package:CWCFlutter/notifier/food_notifier.dart';
+import 'package:CWCFlutter/notifier/news_notifier.dart';
 import 'package:CWCFlutter/screens/SignUp.dart';
 import 'package:CWCFlutter/screens/feed.dart';
 import 'package:CWCFlutter/screens/login.dart';

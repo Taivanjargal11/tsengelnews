@@ -1,7 +1,7 @@
 import 'package:CWCFlutter/api/food_api.dart';
-import 'package:CWCFlutter/model/food.dart';
+import 'package:CWCFlutter/model/news.dart';
 import 'package:CWCFlutter/notifier/auth_notifier.dart';
-import 'package:CWCFlutter/notifier/food_notifier.dart';
+import 'package:CWCFlutter/notifier/news_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,7 +13,7 @@ class FoodDetail extends StatelessWidget {
     AuthNotifier authNotifier = Provider.of<AuthNotifier>(context);
     FoodNotifier foodNotifier = Provider.of<FoodNotifier>(context);
 
-    _onFoodDeleted(Food food) {
+    _onFoodDeleted(News food) {
       Navigator.pop(context);
       foodNotifier.deleteFood(food);
     }
@@ -46,12 +46,12 @@ class FoodDetail extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Category: ${foodNotifier.currentFood.category}',
+                  ' ${foodNotifier.currentFood.category}',
                   style: TextStyle(fontSize: 18, fontStyle: FontStyle.italic),
                 ),
                 SizedBox(height: 20),
                 Text(
-                  "Ingredients",
+                  "Sub News",
                   style: TextStyle(
                       fontSize: 18, decoration: TextDecoration.underline),
                 ),

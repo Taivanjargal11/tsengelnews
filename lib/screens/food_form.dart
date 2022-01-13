@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:CWCFlutter/api/food_api.dart';
-import 'package:CWCFlutter/model/food.dart';
-import 'package:CWCFlutter/notifier/food_notifier.dart';
+import 'package:CWCFlutter/model/news.dart';
+import 'package:CWCFlutter/notifier/news_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +21,7 @@ class _FoodFormState extends State<FoodForm> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   List _subingredients = [];
-  Food _currentFood;
+  News _currentFood;
   String _imageUrl;
   File _imageFile;
   TextEditingController subingredientController = new TextEditingController();
@@ -34,7 +34,7 @@ class _FoodFormState extends State<FoodForm> {
     if (foodNotifier.currentFood != null) {
       _currentFood = foodNotifier.currentFood;
     } else {
-      _currentFood = Food();
+      _currentFood = News();
     }
 
     _subingredients.addAll(_currentFood.subIngredients);
@@ -114,9 +114,9 @@ class _FoodFormState extends State<FoodForm> {
           return 'Name is required';
         }
 
-        if (value.length < 3 || value.length > 20) {
-          return 'Name must be more than 3 and less than 20';
-        }
+        // if (value.length < 3 || value.length > 2000) {
+        //   return 'Name must be more than 3 and less than 20';
+        // }
 
         return null;
       },
@@ -128,7 +128,7 @@ class _FoodFormState extends State<FoodForm> {
 
   Widget _buildCategoryField() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'Category'),
+      decoration: InputDecoration(labelText: 'News'),
       initialValue: _currentFood.category,
       keyboardType: TextInputType.text,
       style: TextStyle(fontSize: 20),
@@ -137,9 +137,9 @@ class _FoodFormState extends State<FoodForm> {
           return 'Category is required';
         }
 
-        if (value.length < 3 || value.length > 20) {
-          return 'Category must be more than 3 and less than 20';
-        }
+        // if (value.length < 3 || value.length > 20) {
+        //   return 'Category must be more than 3 and less than 20';
+        // }
 
         return null;
       },
@@ -155,13 +155,13 @@ class _FoodFormState extends State<FoodForm> {
       child: TextField(
         controller: subingredientController,
         keyboardType: TextInputType.text,
-        decoration: InputDecoration(labelText: 'Subingredient'),
+        decoration: InputDecoration(labelText: 'Sub News'),
         style: TextStyle(fontSize: 20),
       ),
     );
   }
 
-  _onFoodUploaded(Food food) {
+  _onFoodUploaded(News food) {
     FoodNotifier foodNotifier = Provider.of<FoodNotifier>(context, listen: false);
     foodNotifier.addFood(food);
     Navigator.pop(context);
@@ -177,7 +177,7 @@ class _FoodFormState extends State<FoodForm> {
   }
 
   _saveFood() {
-    print('saveFood Called');
+    print('saveNews Called');
     if (!_formKey.currentState.validate()) {
       return;
     }
@@ -201,7 +201,7 @@ class _FoodFormState extends State<FoodForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(title: Text('Food Form')),
+      appBar: AppBar(title: Text('News Form')),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(32),
         child: Form(
@@ -211,7 +211,7 @@ class _FoodFormState extends State<FoodForm> {
             _showImage(),
             SizedBox(height: 16),
             Text(
-              widget.isUpdating ? "Edit Food" : "Create Food",
+              widget.isUpdating ? "Edit News" : "Create News",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 30),
             ),

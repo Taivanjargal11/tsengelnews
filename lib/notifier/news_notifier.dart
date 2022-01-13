@@ -1,32 +1,32 @@
 import 'dart:collection';
 
-import 'package:CWCFlutter/model/food.dart';
+import 'package:CWCFlutter/model/news.dart';
 import 'package:flutter/cupertino.dart';
 
 class FoodNotifier with ChangeNotifier {
-  List<Food> _foodList = [];
-  Food _currentFood;
+  List<News> _foodList = [];
+  News _currentFood;
 
-  UnmodifiableListView<Food> get foodList => UnmodifiableListView(_foodList);
+  UnmodifiableListView<News> get foodList => UnmodifiableListView(_foodList);
 
-  Food get currentFood => _currentFood;
+  News get currentFood => _currentFood;
 
-  set foodList(List<Food> foodList) {
+  set foodList(List<News> foodList) {
     _foodList = foodList;
     notifyListeners();
   }
 
-  set currentFood(Food food) {
+  set currentFood(News food) {
     _currentFood = food;
     notifyListeners();
   }
 
-  addFood(Food food) {
+  addFood(News food) {
     _foodList.insert(0, food);
     notifyListeners();
   }
 
-  deleteFood(Food food) {
+  deleteFood(News food) {
     _foodList.removeWhere((_food) => _food.id == food.id);
     notifyListeners();
   }
